@@ -57,8 +57,22 @@ router.post('/', ( req, res ) => {
             res.status(200).json({ message: 'You\ve created your Todo', createdTodo: createdTodo });
         }else {
             res.status(400).json(err);
+        }else {
+            res.status(400).send(err);
         }
     })
 })
+
+/*********************************************
+ *  Show Page
+ ********************************************/
+router.get('./:id', ( req, res ) => {
+    Todo.findById( req.params.id, (err, foundTodo) =>{
+        if(!err) {
+            res.status(200).json(foundTodo);
+        }
+    })
+})
+
 
 module.exports = router;
