@@ -24,6 +24,7 @@ router.get('/', ( req, res ) => {
     });
 });
 
+
 /************************************************** 
  * TO DO Route (TABLE)
 *****************************************************/
@@ -62,6 +63,21 @@ router.post('/', ( req, res ) => {
         }
     })
 })
+
+/*********************************************
+ *  Delete Route
+ ********************************************/
+router.delete('/:id', ( req, res ) =>{
+    Todo.findByIdAndDelete(req.params.id, (err) => {
+        if(!err) {
+            res.status(200).json( { message: "Deleted this todo list" });
+        }else {
+            res.status(400).send(err);
+        }
+    });
+});
+
+
 
 /*********************************************
  *  Show Page
