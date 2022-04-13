@@ -64,6 +64,27 @@ router.post('/', ( req, res ) => {
     })
 })
 
+/********************************************
+ *  Update Route
+ ********************************************/
+router.put('/:id', ( req, res ) => {
+    const{ body } = req;
+    Todo.findByIdAndUpdate (
+        req.params.id,
+        body,
+        { new : true },
+        ( err, updatedTodo ) => {
+            if(!err) {
+                res.status(200).json(updatedTodo);
+            } else {
+                res.status(400).send(err);
+            }
+        }
+    )
+})
+
+
+
 /*********************************************
  *  Delete Route
  ********************************************/
