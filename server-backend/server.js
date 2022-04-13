@@ -1,5 +1,5 @@
 /******************************
- * Import Dependencies
+ * Imports Dependencies
  *****************************/
 
 require('dotenv').config();
