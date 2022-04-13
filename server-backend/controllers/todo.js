@@ -11,6 +11,20 @@ const Todo = require('../models/Todo');
     Create, Read, Update, Delete
 */
 /****************************************************/
+/****************************************************************************************
+ *  Read route -  GET `/` route that finds and returns everything in the todo database
+ *****************************************************************************************/
+router.get('/', ( req, res ) => {
+    Todo.find({}, (err , foundTodo) => {
+        if(!err) {
+            res.status(200).json(foundTodo);
+        }else {
+            res.status(400).json(err);
+        }
+    });
+});
+
+
 
 
 /****************************************************************
