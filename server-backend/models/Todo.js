@@ -3,22 +3,22 @@
  ************************************/
 const { Schema, model } = require('./connection')
 
-const toDoListData = [
-    {
-      title: "Learn more about React",
-      completed: true
+const toDoListData = Schema({
+    entry: {
+        required: true,
+        type: String
     },
-    {
-      title: "Write a new Component",
-      completed: false
-    },
-    {
-      title: "Add some style",
-      completed: false
-    },
-    {
-        timestamps: true
+    status: {
+        type: String,
+        required: true,
+        default: 'TO-DO',
+        enum: ['TO-DO', 'PENDING', 'COMPLETED'],
     }
-  ];
+},
+{
+    timestamps: true
+}
+
+)
 
   module.exports = model('Todo', toDoListData);
