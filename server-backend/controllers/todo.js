@@ -24,6 +24,24 @@ router.get('/', ( req, res ) => {
     });
 });
 
+/************************************************** 
+ * TO DO Route (TABLE)
+*****************************************************/
+router.get('/table', (req, res) =>{
+    Todo.find({}, (err, foundTodo) => {
+        if(!err) {
+            const formattedData = foundTodo.reduce((acc, item ) =>{
+                acc[item.status] = acc[item.status]
+                ? [...acc[item.status], item]
+                : [item];
+                return acc;
+            }, {});
+                res.status(200).json(formattedData);
+        }else {
+                res.status(400).json(err);
+        }
+    })
+})
 
 
 
