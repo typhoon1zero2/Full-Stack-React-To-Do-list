@@ -6,7 +6,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const PORT = process.env.PORT || 3001 ;
-//const router = require('./controllers/todo');
+const router = require('./controllers/todo');
 
 
 
@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3001 ;
  *********************************/
 app.use(cors());
 app.use(express.json());
-//app.use('/todo', router);
+app.use('/todos', router);
 
 
 /*********************************
