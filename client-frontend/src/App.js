@@ -1,78 +1,181 @@
 import "./App.css";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Nav from './components/Nav'
-import ShowPage from "./pages/ShowPage";
-import Layout from "./pages/layout/Layout";
-// import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
-
-
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
+import { MdPendingActions , MdOutlineCloudDone , MdOutlineWarningAmber} from "react-icons/md";
+import { SiAddthis } from "react-icons/si";
+import { BsPencil } from "react-icons/bs";
 
 function App() {
-  const [ todos, setTodos ] = useState({});
-  const [submitTodos, setSubmitTodos] = useState(false);
-  const [buttonTodos , setButtonTodos] = useState(false);
+  const [todo, setTodo] = useState({});
+  const [submitTodo, setSubmitTodo] = useState(false);
+  const [buttonTodo, setButtonTodo] = useState(false);
   const entry = useRef(null);
   const status = useRef(null);
 
   useEffect(() => {
     (async () => {
       try {
-        const { fetchData } = await axios.get(`http://localhost:3001/todos/table`);
-        await setTodos(fetchData);
-      }catch(err) {
-        console.log(err)
+        const fetchData  = await axios.get("http://localhost:3001/todos/table");
+         setTodo(fetchData.data);
+         console.log(todo)
+      } catch (err) {
+        console.log(err);
       }
     })();
-  },[submitTodos, buttonTodos]);
 
-  const handleButtons = async ( todoStatus, id ) => {
-   try {
-     const { status } = await axios.put(`http://localhost:3001/todos/${id}`, {
-       status: todoStatus,
-     });
-     if (status === 200 ) {
-       setButtonTodos(!setButtonTodos);
-     }else {
-       console.log('error');
-     }
-    }
-     catch (err) {
-       console.log(err);
-    
-   }
-  };
+  }, [submitTodo, buttonTodo]);
 
-  const handleSubmit = async ( evt ) => {
-    evt.preventDefault();
+  const handleButtons = async (todoStatus, id) => {
     try {
-      await axios.post(`http://localhost:3001/todos` ,{ entry: entry.current.value, status: status.current.value.toUpperCase()});
-      setSubmitTodos(!submitTodos);
-      entry.current.value = "";
-    }catch(err) {
+      const { status } = await axios.put(`http://localhost:3001/todos/${id}`, {
+        status: todoStatus,
+      });
+      if (status === 200) {
+        setButtonTodo(!setButtonTodo);
+      } else {
+        console.log("error");
+      }
+    } catch (err) {
       console.log(err);
     }
   };
-  
 
+  const handleSubmit = async (evt) => {
+    evt.preventDefault();
+    try {
+      await axios.post(`http://localhost:3001/todos`, {
+        entry: entry.current.value,
+        status: status.current.value.toUpperCase(),
+      });
+      setSubmitTodo(!submitTodo);
+      entry.current.value = "";
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-    return (
-        <>
-          <main className="App">
-            <Nav />
-            <Routes>
-              <Route path="/" element={<Layout />} />
-            </Routes>
-          </main>
-        </>
-      );
+  return (
+    <div className="App">
+      <div className="container">
+        <div>
+          <h1 className="todo">To-do <BsPencil /></h1>
+          <div className="list">
+            {todo["TO-DO"]
+              ? todo["TO-DO"].map((item, idx) => {
+                  return (
+                    <div className="task" key={idx}>
+                      <Link to={`/${item._id}`}>{item.entry}</Link>
+                      <div>
+                        <button
+                          className="button"
+                          onClick={() => {
+                            handleButtons("COMPLETED", item._id);
+                          }}
+                        >
+                          <FaArrowAltCircleLeft />
+                        </button>
+                        <button
+                          className="button"
+                          onClick={() => {
+                            handleButtons("PENDING", item._id);
+                          }}
+                        >
+                          <FaArrowAltCircleRight />
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })
+              : ""}
+          </div>
+        </div>
+        <div>
+          <h1>In-Progress <MdPendingActions /></h1>
+          <div className="list">
+            {todo["PENDING"]
+              ? todo["PENDING"].map((item, i) => {
+                  return (
+                    <div className="task" key={i}>
+                      <Link to={`/${item._id}`}>{item.entry}</Link>
+                      <div>
+                        <button
+                          className="button"
+                          onClick={() => {
+                            handleButtons("TO-DO", item._id);
+                          }}
+                        >
+                          <FaArrowAltCircleLeft />
+                        </button>
+                        <button
+                          className="button"
+                          onClick={() => {
+                            handleButtons("COMPLETED", item._id);
+                          }}
+                        >
+                          <FaArrowAltCircleRight />
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })
+              : ""}
+          </div>
+        </div>
+        <div>
+          <h1>Done <MdOutlineCloudDone /></h1>
+          <div className="list">
+            {todo["COMPLETED"]
+              ? todo["COMPLETED"].map((item, i) => {
+                  return (
+                    <div className="task" key={i}>
+                      <Link to={`/${item._id}`}>{item.entry}</Link>
+                      <div>
+                        <button
+                          className="button"
+                          onClick={() => {
+                            handleButtons("PENDING", item._id);
+                          }}
+                        >
+                          <FaArrowAltCircleLeft />
+                        </button>
+                        <button
+                          className="button"
+                          onClick={() => {
+                            handleButtons("TO-DO", item._id);
+                          }}
+                        >
+                          <FaArrowAltCircleRight />
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })
+              : ""}
+          </div>
+        </div>
+      </div>
+      <div className="input-entry">
+        <form className="form">
+          <label>
+            Entry: <input ref={entry} type="text" />
+          </label>
+          <label>
+            Status:
+            <select ref={status}>
+              <option value="to-do">To-Do</option>
+              <option value="pending">Pending</option>
+              <option value="completed">Completed</option>
+            </select>
+          </label>
+          <button className="submit" onClick={handleSubmit}>
+           <h2> <SiAddthis /></h2>
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 }
-
-
-
-
-
 
 export default App;
