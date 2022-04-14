@@ -16,6 +16,20 @@ function App() {
   const [buttonTodos , setButtonTodos] = useState(false);
   const entry = useRef(null);
   const status = useRef(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { fetchData } = await.get`http:localhost:3001/todos/table`;
+        await setTodos(fetchData);
+      }catch(err) {
+        console.log(err)
+      }
+    })();
+  }[]);
+
+
+
     return (
         <>
           <main className="App">
