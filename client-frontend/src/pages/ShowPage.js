@@ -1,12 +1,12 @@
 import React , { useState , useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { FcHome } from "react-icons/fc";
 
 const ShowPage = () => {
   const { id } =  useParams();
-
-  const [ todo, setTodo ] = useState({})
-
+  const [ data, setData ] = useState({})
   /* Navigation Hook to navigate from page -to-page*/
   const navigate = useNavigate()
 
@@ -15,7 +15,7 @@ const ShowPage = () => {
     (async () => {
       try {
         const { fetchData } = await axios.get(`http://localhost:3001/todos/${id}`)
-        setTodo(fetchData);
+        setData(fetchData);
       }catch (err) {
         console.log(err)
       }
@@ -33,8 +33,13 @@ const ShowPage = () => {
   }
 
   return(
-    <div className='show-Page'>
-      <h1>ShowPage</h1>
+    <div className="showPage">
+      <Link className='home' to="/"><FcHome /></Link>
+      <div className="todoEntry"> 
+        <h2>Entry: {data.entry}</h2>
+        <h2>Status: {data.status}</h2>
+        <button  onClick={deletedList}><RiDeleteBin6Line /> </button>
+      </div>
     </div>
   )
 }
