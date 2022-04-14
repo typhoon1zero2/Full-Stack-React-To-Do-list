@@ -4,6 +4,8 @@ import ReactDom from "react-dom";
 import "./App.css";
 import App from "./App";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ShowPage from "./pages/ShowPage";
+import Layout from "./pages/layout/Layout";
 
 const element = document.getElementById("root");
 
@@ -11,10 +13,12 @@ ReactDom.render(
   <StrictMode>
     <Router>
       <Routes>
-        <Route>
+        <Route path="/" element={<Layout />}>
           <Route index element={<App />} />
+          <Route path=":id" element={<ShowPage />} />
         </Route>
       </Routes>
     </Router>
-  </StrictMode>, element
+  </StrictMode>,
+  element
 );
