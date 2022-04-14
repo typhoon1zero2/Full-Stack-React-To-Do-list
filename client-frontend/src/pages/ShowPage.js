@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const ShowPage = () => {
-  const { idx } =  useParams();
+  const { id } =  useParams();
 
   const [ todo, setTodo ] = useState({})
 

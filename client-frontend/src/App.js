@@ -20,14 +20,42 @@ function App() {
   useEffect(() => {
     (async () => {
       try {
-        const { fetchData } = await.get`http:localhost:3001/todos/table`;
+        const { fetchData } = await axios.get(`http://localhost:3001/todos/table`);
         await setTodos(fetchData);
       }catch(err) {
         console.log(err)
       }
     })();
-  }[]);
+  },[submitTodos, buttonTodos]);
 
+  const handleButtons = async ( todoStatus, id ) => {
+   try {
+     const { status } = await axios.put(`http://localhost:3001/todos/${id}`, {
+       status: todoStatus,
+     });
+     if (status === 200 ) {
+       setButtonTodos(!setButtonTodos);
+     }else {
+       console.log('error');
+     }
+    }
+     catch (err) {
+       console.log(err);
+    
+   }
+  };
+
+  const handleSubmit = async ( evt ) => {
+    evt.preventDefault();
+    try {
+      await axios.post(`http://localhost:3001/todos` ,{ entry: entry.current.value, status: status.current.value.toUpperCase()});
+      setSubmitTodos(!submitTodos);
+      entry.current.value = "";
+    }catch(err) {
+      console.log(err);
+    }
+  };
+  
 
 
     return (
