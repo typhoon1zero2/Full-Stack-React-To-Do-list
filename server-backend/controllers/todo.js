@@ -56,7 +56,7 @@ router.post('/', ( req, res ) => {
 
     Todo.create(body, ( err, createdTodo) => {
         if(!err){
-            res.status(200).json({ message: 'You are good!!', createdTodo: createdTodo });
+            res.status(200).json({ message: `You've created your task!!`, createdTodo: createdTodo });
         }else {
             res.status(400).json(err);
         }
@@ -90,7 +90,7 @@ router.put('/:id', ( req, res ) => {
 router.delete('/:id', ( req, res ) =>{
     Todo.findByIdAndDelete(req.params.id, (err) => {
         if(!err) {
-            res.status(200).json( { message: "Deleted this todo list" });
+            res.status(200).json( { message: `You've deleted this task` });
         }else {
             res.status(400).send(err);
         }
