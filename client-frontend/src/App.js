@@ -14,18 +14,19 @@ function App() {
   const entry = useRef(null);
   const status = useRef(null);
 
+  const getData = async () => {
+    try {
+      const fetchData  = await axios.get("http://localhost:3001/todos/table");
+       setTodo(fetchData.data);
+       //console.log(todo)
+    } catch (err) {
+      //console.log(err);
+    }
+  }
   useEffect(() => {
-    (async () => {
-      try {
-        const fetchData  = await axios.get("http://localhost:3001/todos/table");
-         setTodo(fetchData.data);
-         console.log(todo)
-      } catch (err) {
-        console.log(err);
-      }
-    })();
+    getData();
 
-  }, [submitTodo, buttonTodo]);
+  },[submitTodo, buttonTodo]);
 
   const handleButtons = async (todoStatus, id) => {
     try {
@@ -33,7 +34,7 @@ function App() {
         status: todoStatus,
       });
       if (status === 200) {
-        setButtonTodo(!setButtonTodo);
+        setButtonTodo(!buttonTodo);
       } else {
         console.log("error");
       }
@@ -165,8 +166,8 @@ function App() {
             Status:
             <select ref={status}>
               <option value="to-do">To-Do</option>
-              <option value="pending">Pending</option>
-              <option value="completed">Completed</option>
+              <option value="pending">In-Progress</option>
+              <option value="completed">Done</option>
             </select>
           </label>
           <button className="submit" onClick={handleSubmit}>
