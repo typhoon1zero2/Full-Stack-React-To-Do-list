@@ -7,6 +7,7 @@ import { MdPendingActions , MdOutlineCloudDone , MdOutlineWarningAmber} from "re
 import { SiAddthis } from "react-icons/si";
 import { BsPencil } from "react-icons/bs";
 
+
 function App() {
   const [todo, setTodo] = useState({});
   const [submitTodo, setSubmitTodo] = useState(false);
@@ -57,7 +58,9 @@ function App() {
     }
   };
 
+
   return (
+    
     <div className="App">
       <div className="container">
         <div>
@@ -71,7 +74,7 @@ function App() {
                       <div>
                         <button
                           className="button"
-                          onClick={() => {
+                          onClick={() => { 
                             handleButtons("COMPLETED", item._id);
                           }}
                         >

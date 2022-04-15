@@ -11,8 +11,7 @@ const ShowPage = () => {
   const navigate = useNavigate()
 
   /* UseEffect collect when page mount */
-  useEffect(() => {
-    (async () => {
+  useEffect(() => {(async  () => {
       try {
         const { fetchData } = await axios.get(`http://localhost:3001/todos/${id}`)
         setData(fetchData);

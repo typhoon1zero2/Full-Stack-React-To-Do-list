@@ -7,7 +7,7 @@ function Layout() {
     return (
         <div className="layout">
           <header>
-            <h1 className="title" ><AiOutlineCheck />To Do List</h1>
+            <h1 className="title" ><AiOutlineCheck />To-Do-List</h1>
           </header>
           <main>
             <Outlet />
