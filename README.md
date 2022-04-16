@@ -3,7 +3,7 @@
 # Frontend
 
 
-![To-Do-List](./assets/show.jpeg)
+![To-Do-List](/assets/show.jpeg)
 
 
 # Backend
