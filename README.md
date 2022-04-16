@@ -32,11 +32,4 @@
 
 ### Build API Add Cors Deploy to Heroku
 
-```js
-URL	        HTTP Verb	    Action	      Used For	                        Mongoose Model Function
-/todos/	    GET	            index	      Displaying a list of all todos	.find
-/todos/	    POST	        create	      Create a new todo	                .create
-/todos/:id	GET	            show	      Display a specific todo	        .findById
-/todos/:id	PATCH/PUT	    update	      Update a specific todo	        .findByIdAndUpdate
-/todos/:id	DELETE	        destroy	      Delete a specific todo	        .findByIdAndDelete
-```
+![To-Do-List](./assets/route.jpeg)
