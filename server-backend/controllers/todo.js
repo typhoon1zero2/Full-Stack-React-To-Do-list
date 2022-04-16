@@ -102,7 +102,7 @@ router.delete('/:id', ( req, res ) =>{
 /*********************************************
  *  Show Page
  ********************************************/
-router.get('./:id', ( req, res ) => {
+router.get('/:id', ( req, res ) => {
     Todo.findById( req.params.id, (err, foundTodo) =>{
         if(!err) {
             res.status(200).json(foundTodo);

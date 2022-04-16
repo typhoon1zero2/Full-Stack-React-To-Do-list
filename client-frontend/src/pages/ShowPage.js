@@ -10,16 +10,31 @@ const ShowPage = () => {
   /* Navigation Hook to navigate from page -to-page*/
   const navigate = useNavigate()
 
-  /* UseEffect collect when page mount */
-  useEffect(() => {(async  () => {
-      try {
-        const { fetchData } = await axios.get(`http://localhost:3001/todos/${id}`)
-        setData(fetchData);
-      }catch (err) {
-        console.log(err)
-      }
-    })()
-  },[])
+   /* UseEffect collect when page mount */
+  // useEffect(() => {
+  //   ( async () => {
+  //     try {
+  //       const response = await axios.get(`http://localhost:3001/todos/${id}`)
+  //       setData(response.data.foundTodo)
+  //     } catch (err) {
+  //       console.log(err)
+  //     }
+  //   })()
+  // }, [])
+  
+  const getData = async () => {
+    try {
+      const fetchData  = await axios.get(`http://localhost:3001/todos/${id}`);
+       setData(fetchData.data);
+       console.log("success")
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  useEffect(() => {
+    getData();
+
+  },[]);
 
   const deletedList = async () =>{
     try {

@@ -70,7 +70,7 @@ function App() {
               ? todo["TO-DO"].map((item, idx) => {
                   return (
                     <div className="task" key={idx}>
-                      <Link to={`/${item._id}`}>{item.entry}</Link>
+                      <Link to={`./${item._id}`}>{item.entry}</Link>
                       <div>
                         <button
                           className="button"
@@ -102,7 +102,7 @@ function App() {
               ? todo["PENDING"].map((item, i) => {
                   return (
                     <div className="task" key={i}>
-                      <Link to={`/${item._id}`}>{item.entry}</Link>
+                      <Link to={`./${item._id}`}>{item.entry}</Link>
                       <div>
                         <button
                           className="button"
@@ -134,7 +134,7 @@ function App() {
               ? todo["COMPLETED"].map((item, i) => {
                   return (
                     <div className="task" key={i}>
-                      <Link to={`/${item._id}`}>{item.entry}</Link>
+                      <Link to={`./${item._id}`}>{item.entry}</Link>
                       <div>
                         <button
                           className="button"
