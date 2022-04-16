@@ -1,5 +1,20 @@
 # Full-Stack-React-To-Do-list
 
+### Learning Objectives
+- React State
+- Controlling Input in React
+- Rendering Data with React
+### Prerequisites
+- React State
+- React Props
+- Capturing Input
+
+## Requirements
+- When the page loads, your app should render a list of items from an array of data.
+- If the item is not completed, render the item on the page.
+- Your app should have an input that allows the user to enter a new item to the to do list.
+- When the user submits the form (presses enter) the value in the input should be added as an item on your to do list.
+
 # Frontend
 
 `The way this Todo List app works is pretty simple. Type in a task or item or whatever you want into the input field and press Add (+) . Once you've submitted your item, you will see it appear as an entry. You can keep adding item to add additional entries and move the arrow <- ->:`
@@ -17,3 +32,11 @@
 
 ### Build API Add Cors Deploy to Heroku
 
+```js
+URL	        HTTP Verb	    Action	      Used For	                        Mongoose Model Function
+/todos/	    GET	            index	      Displaying a list of all todos	.find
+/todos/	    POST	        create	      Create a new todo	                .create
+/todos/:id	GET	            show	      Display a specific todo	        .findById
+/todos/:id	PATCH/PUT	    update	      Update a specific todo	        .findByIdAndUpdate
+/todos/:id	DELETE	        destroy	      Delete a specific todo	        .findByIdAndDelete
+```
