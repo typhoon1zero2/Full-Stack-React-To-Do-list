@@ -33,3 +33,19 @@
 ### Build API Add Cors Deploy to Heroku
 
 ![To-Do-List](./assets/route.jpeg)
+### Technologies Used:
+
+- MongoDB
+- Express
+- React
+- NodeJS
+- JavaScript
+- Npm
+- JSX
+- CSS
+- HTML
+- VScode
+- Git
+- GitHub
+- Postman
+- Heroku
