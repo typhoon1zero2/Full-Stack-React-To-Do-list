@@ -12,7 +12,7 @@ const toDoListData = Schema({
         type: String,
         required: true,
         default: 'TO-DO',
-        enum: ['TO-DO', 'IN-PROGRESS', 'DONE'],
+        enum: ['TO-DO', 'PENDING', 'COMPLETED'],
     }
 },
 {
