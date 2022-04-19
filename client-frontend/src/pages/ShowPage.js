@@ -24,7 +24,8 @@ const ShowPage = () => {
   
   const getData = async () => {
     try {
-      const fetchData  = await axios.get(`http://localhost:3001/todos/${id}`);
+      // 
+      const fetchData  = await axios.get(`https://mernfstodo.herokuapp.com/todos/${id}`);
        setData(fetchData.data);
        console.log("success")
     } catch (err) {
@@ -38,7 +39,8 @@ const ShowPage = () => {
 
   const deletedList = async () =>{
     try {
-      await axios.delete(`http://localhost:3001/todos/${id}`)
+      // await axios.delete(`http://localhost:3001/todos/${id}`)
+      await axios.delete(`https://mernfstodo.herokuapp.com/todos/${id}`)
     }catch (err) {
       console.log()
     } finally {

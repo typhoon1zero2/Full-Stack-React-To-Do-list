@@ -17,7 +17,8 @@ function App() {
 
   const getData = async () => {
     try {
-      const fetchData  = await axios.get("http://localhost:3001/todos/table");
+      // const fetchData  = await axios.get("http://localhost:3001/todos/table");
+      const fetchData  = await axios.get("https://mernfstodo.herokuapp.com/todos/table");
        setTodo(fetchData.data);
        //console.log(todo)
     } catch (err) {
@@ -31,7 +32,8 @@ function App() {
 
   const handleButtons = async (todoStatus, id) => {
     try {
-      const { status } = await axios.put(`http://localhost:3001/todos/${id}`, {
+      // const { status } = await axios.put(`http://localhost:3001/todos/${id}`, {
+        const { status } = await axios.put(`https://mernfstodo.herokuapp.com/todos/${id}`, {
         status: todoStatus,
       });
       if (status === 200) {
@@ -47,7 +49,8 @@ function App() {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     try {
-      await axios.post(`http://localhost:3001/todos`, {
+      // await axios.post(`http://localhost:3001/todos`, {
+        await axios.post(`https://mernfstodo.herokuapp.com/todos`, {
         entry: entry.current.value,
         status: status.current.value.toUpperCase(),
       });
